@@ -1,0 +1,45 @@
+{
+  "format_version": 1,
+  "game": {
+    "name": "TwistedMetal4",
+    "id": "SCUS-94560",
+    "boot_exe": "SCUS_945.60"
+  },
+  "marketing": {
+    "description": "Twisted Metal 4 is the fourth installment in the Twisted Metal series and the second and last installment to be developed by 989 Studios. The game's plot centers on Sweet Tooth, the long-time mascot of the titular Twisted Metal competition, overthrowing Calypso, the mysterious organizer of the competition, in a coup d'\u00e9tat. He then takes over the mantle of granting the winner of the competition a single wish, regardless of price, size or even reality.",
+    "publisher": "989 Studios",
+    "year": "1999",
+    "region": "USA",
+    "players": 4
+  },
+  "rom_identity": {
+    "cue_name": "Twisted Metal 4 (USA) (Rev 1).cue",
+    "bin_name": "Twisted Metal 4 (USA) (Rev 1) (Track 01).bin",
+    "track_counts": [
+      23
+    ],
+    "require_cue": true,
+    "data_track": {
+      "size": 384615504,
+      "md5": "0e5d822f108fcef31057645721d3d710",
+      "sha1": "64e226413b27ea12639589b3ca2806976c795c8b"
+    },
+    "disc_fp": "377a189a9a01f2a573199da42b2405e6e467269edcd5369610f8d640fd76fc1f"
+  },
+  "exe": {
+    "load_address": "0x80010000",
+    "entry_pc": "0x80010000",
+    "text_size": "0x00049800",
+    "stack_base": "0x801FFFF0"
+  },
+  "seeds": {
+    "count": 642,
+    "source": "boot_exe_jal"
+  },
+  "warnings": [],
+  "notes": [
+    "entry_pc/load_address/text_size/stack_base taken from PS-X EXE header.",
+    "seeds are first-pass boot-EXE JAL targets (+ entry); expect to grow as overlays / runtime paths are discovered.",
+    "required_disc_fp is psxrecomp-toc-v1 (matches runtime DiscIdentity)."
+  ]
+}

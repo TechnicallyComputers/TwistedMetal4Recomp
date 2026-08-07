@@ -1,0 +1,51 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "TwistedMetal4"
+id = "SCUS-94560"
+players = 4
+exe = "disc/SCUS_945.60"
+disc = "disc/Twisted Metal 4 (USA) (Rev 1).cue"
+load_address = "0x80010000"
+entry_pc = "0x80010000"
+text_size = "0x00049800"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Twisted Metal 4 (USA) (Rev 1) (Track 01).bin"
+cue_name = "Twisted Metal 4 (USA) (Rev 1).cue"
+boot_exe = "SCUS_945.60"
+known_sizes = [384615504]
+known_md5 = [
+  "0e5d822f108fcef31057645721d3d710",
+]
+known_sha1 = [
+  "64e226413b27ea12639589b3ca2806976c795c8b",
+]
+
+[recompiler]
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+window_title = "TwistedMetal4 Recompiled"
+memcard_dir = "saves"
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+allow_hybrid = false
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 23
+required_disc_fp = "377a189a9a01f2a573199da42b2405e6e467269edcd5369610f8d640fd76fc1f"
