@@ -11,6 +11,7 @@ if(EXISTS "${PSXRECOMP_ROOT}/lib/recomp-net/CMakeLists.txt")
     set(PSX_NETPLAY ON CACHE BOOL
         "Link recomp-net delay-sync (opt-in; needs recomp-net)" FORCE)
 endif()
+# Self-build first-run wizard + Generate & rebuild (required for setup-host CI).
 set(PSX_SETUP_WIZARD ON CACHE BOOL
     "Advertise first-run setup wizard + Generate & rebuild in recomp-ui" FORCE)
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")

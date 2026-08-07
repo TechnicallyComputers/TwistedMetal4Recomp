@@ -284,6 +284,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DPSXRECOMP_FORCE_SETUP_HOST=ON \
             -DPSXRECOMP_ALLOW_NO_BIOS=ON \
+            -DPSX_SETUP_WIZARD=ON \
             -DPSX_NETPLAY=ON \
             -DPSX_GAME_VERSION="${RELEASE_VERSION}" \
             "${EXTRA[@]}" 2>&1 | tee build-ci-configure.log
