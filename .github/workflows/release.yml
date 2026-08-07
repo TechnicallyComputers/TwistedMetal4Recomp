@@ -377,7 +377,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ needs.prepare.outputs.tag }}
-          name: TwistedMetal4 Recompiled ${{ needs.prepare.outputs.tag }}
+          name: "TwistedMetal4 Recompiled ${{ needs.prepare.outputs.tag }}"
           files: |
             dist/twistedmetal4-*.zip
           generate_release_notes: true
