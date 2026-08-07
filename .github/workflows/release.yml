@@ -271,13 +271,20 @@ jobs:
           # Title root codegen_setup.c must define
           # psx_game_codegen_forward_if_built (see codegen_setup.c.in) or link
           # fails — main.cpp always calls it, including setup-host CI builds.
-          # Titles with PSX_NETPLAY=ON in CMakeLists get RNET_ENABLE_ICE=ON from
-          # runtime.cmake (libjuice FetchContent — needs network at configure).
+          # Netplay titles: set PSX_NETPLAY ON in CMakeLists *before*
+          # include(runtime.cmake). ENABLE_NETPLAY_IF_PRESENT alone is too late
+          # (option() already cached OFF) and psx_netplay_sched.c still needs
+          # recomp_net/session.h. Also add -DPSX_NETPLAY=ON to this cmake
+          # invocation for CI belt-and-suspenders (do not leave it commented
+          # mid-continuation — that breaks the shell line).
+          # With PSX_NETPLAY, runtime.cmake defaults RNET_ENABLE_ICE=ON
+          # (libjuice FetchContent — needs network at configure).
           # Add title-specific -D flags here if needed (e.g. -DMOTK_NATIVE=OFF).
           cmake -S . -B build-ci -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DPSXRECOMP_FORCE_SETUP_HOST=ON \
             -DPSXRECOMP_ALLOW_NO_BIOS=ON \
+            -DPSX_NETPLAY=ON \
             -DPSX_GAME_VERSION="${RELEASE_VERSION}" \
             "${EXTRA[@]}" 2>&1 | tee build-ci-configure.log
           if ! grep -q 'Vulkan backend: headers' build-ci-configure.log; then
