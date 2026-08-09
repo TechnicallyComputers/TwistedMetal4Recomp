@@ -37,6 +37,8 @@
 SCPH*.BIN
 
 # Local path/config stubs
+input.ini
+keybinds.ini
 bios.cfg
 disc.cfg
 rom.cfg
