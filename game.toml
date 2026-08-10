@@ -40,7 +40,7 @@ renderer = "opengl"
 aspect_ratio = "4:3"
 
 [controller]
-default_mode = "digital"
+default_mode = "analog"
 allow_hybrid = false
 # DualShock-on-multitap-tap seats (opt-in hack). Off = faithful digital taps.
 # Toggle from Settings → INPUT / Lobby Settings; also in settings.toml.
