@@ -4,7 +4,7 @@
 [game]
 name = "TwistedMetal4Recomp"
 id = "SCUS-94560"
-players = 2
+players = 4
 exe = "disc/SCUS_945.60"
 disc = "disc/Twisted Metal 4 (USA) (Rev 1).cue"
 load_address = "0x80010000"
@@ -24,6 +24,9 @@ known_md5 = [
 ]
 known_sha1 = [
   "64e226413b27ea12639589b3ca2806976c795c8b",
+]
+known_crc32 = [
+  "020e8ae1",
 ]
 
 [recompiler]

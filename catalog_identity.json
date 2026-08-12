@@ -10,7 +10,7 @@
     "publisher": "",
     "year": "",
     "region": "",
-    "players": 2
+    "players": 4
   },
   "rom_identity": {
     "cue_name": "Twisted Metal 4 (USA) (Rev 1).cue",
@@ -22,7 +22,8 @@
     "data_track": {
       "size": 384615504,
       "md5": "0e5d822f108fcef31057645721d3d710",
-      "sha1": "64e226413b27ea12639589b3ca2806976c795c8b"
+      "sha1": "64e226413b27ea12639589b3ca2806976c795c8b",
+      "crc32": "020e8ae1"
     },
     "disc_fp": "377a189a9a01f2a573199da42b2405e6e467269edcd5369610f8d640fd76fc1f"
   },
