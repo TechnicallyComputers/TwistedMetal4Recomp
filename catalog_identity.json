@@ -1,16 +1,16 @@
 {
   "format_version": 1,
   "game": {
-    "name": "TwistedMetal4",
+    "name": "TwistedMetal4Recomp",
     "id": "SCUS-94560",
     "boot_exe": "SCUS_945.60"
   },
   "marketing": {
-    "description": "Twisted Metal 4 is the fourth installment in the Twisted Metal series and the second and last installment to be developed by 989 Studios. The game's plot centers on Sweet Tooth, the long-time mascot of the titular Twisted Metal competition, overthrowing Calypso, the mysterious organizer of the competition, in a coup d'\u00e9tat. He then takes over the mantle of granting the winner of the competition a single wish, regardless of price, size or even reality.",
-    "publisher": "989 Studios",
-    "year": "1999",
-    "region": "USA",
-    "players": 4
+    "description": "",
+    "publisher": "",
+    "year": "",
+    "region": "",
+    "players": 2
   },
   "rom_identity": {
     "cue_name": "Twisted Metal 4 (USA) (Rev 1).cue",

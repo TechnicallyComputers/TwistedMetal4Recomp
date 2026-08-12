@@ -2,9 +2,9 @@
 # Review before shipping. Runtime quirks / overlay seeds still need hand work.
 
 [game]
-name = "TwistedMetal4"
+name = "TwistedMetal4Recomp"
 id = "SCUS-94560"
-players = 4
+players = 2
 exe = "disc/SCUS_945.60"
 disc = "disc/Twisted Metal 4 (USA) (Rev 1).cue"
 load_address = "0x80010000"
@@ -32,7 +32,7 @@ out_dir = "generated"
 strict = true
 
 [runtime]
-window_title = "TwistedMetal4 Recompiled"
+window_title = "TwistedMetal4Recomp Recompiled"
 memcard_dir = "saves"
 
 [video]
@@ -40,11 +40,7 @@ renderer = "opengl"
 aspect_ratio = "4:3"
 
 [controller]
-default_mode = "analog"
-allow_hybrid = false
-# DualShock-on-multitap-tap seats (opt-in hack). Off = faithful digital taps.
-# Toggle from Settings → INPUT / Lobby Settings; also in settings.toml.
-multitap_analog = true
+default_mode = "digital"
 
 # Online mount gate: digests + track count + optional TOC fingerprint
 # (see docs/NETPLAY.md).
