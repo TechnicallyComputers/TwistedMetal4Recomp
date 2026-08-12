@@ -3,7 +3,6 @@
 # Install:
 #   mkdir -p .github/workflows
 #   cp psxrecomp/docs/ci/templates/setup-release.yml .github/workflows/release.yml
-# Host-only: psxrecomp/docs/ci/HOST_ONLY_RELEASES.md
 # Then replace every YOUR_* token (or let setup_project / fill_tokens.py do it).
 # See docs/GAME_PROJECT_SETUP.md.
 #
@@ -20,6 +19,12 @@
 # Do not set PSX_PGO in CI (PGO stays user-local after Generate).
 # Release hosts always build with PSX_HAVE_VULKAN (headers + glslc); runtime
 # still loads the ICD dynamically via SDL.
+#
+# workflow_dispatch: leave version empty to auto-bump patch (or choose bump).
+# Host-focused releases: CI never ships game C. Players Generate once; RetComM
+# Update reuses codegen-cache when ROM/BIOS/emitters match (cmake-only).
+# See docs/ci/HOST_ONLY_RELEASES.md. reuse_cached_emitters skips rebuilding
+# psxrecomp-game/bios when the psxrecomp SHA cache hits (host/UI bumps).
 
 name: Release builds
 
@@ -91,7 +96,7 @@ jobs:
             RAW="${{ github.event.inputs.version }}"
             BUMP="${{ github.event.inputs.bump || 'patch' }}"
             PUBLISH="${{ github.event.inputs.publish }}"
-            REUSE="${{ github.event.inputs.reuse_cached_emitters || 'true' }}"
+            REUSE="${{ github.event.inputs.reuse_cached_emitters }}"
           else
             RAW="${{ github.ref_name }}"
             BUMP="patch"
@@ -100,24 +105,31 @@ jobs:
           fi
           RAW="$(printf '%s' "${RAW}" | tr -d '[:space:]')"
           if [[ -z "${RAW}" ]]; then
-            LATEST="$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -1 || true)"
-            BASE="${LATEST#v}"
-            if [[ -z "${BASE}" && -f VERSION ]]; then
-              BASE="$(tr -d '[:space:]' <VERSION)"
-              BASE="${BASE#v}"
+            # Prefer shared helper when present (optional); else inline bump.
+            if [[ -x psxrecomp/tools/ci/normalize_version.sh ]]; then
+              eval "$(bash psxrecomp/tools/ci/normalize_version.sh --next "${BUMP}" | grep -E '^(VERSION|TAG)=')"
+              VER="${VERSION}"
+              TAG="${TAG}"
+            else
+              LATEST="$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -1 || true)"
+              BASE="${LATEST#v}"
+              if [[ -z "${BASE}" && -f VERSION ]]; then
+                BASE="$(tr -d '[:space:]' <VERSION)"
+                BASE="${BASE#v}"
+              fi
+              BASE="${BASE:-0.0.0}"
+              BASE="${BASE%%[-+]*}"
+              IFS=. read -r MA MI PA <<<"${BASE}"
+              MA="${MA:-0}"; MI="${MI:-0}"; PA="${PA:-0}"
+              case "${BUMP}" in
+                major) MA=$((MA + 1)); MI=0; PA=0 ;;
+                minor) MI=$((MI + 1)); PA=0 ;;
+                *) PA=$((PA + 1)) ;;
+              esac
+              VER="${MA}.${MI}.${PA}"
+              TAG="v${VER}"
+              echo "Auto-bumped ${BUMP}: ${LATEST:-none} → ${VER}"
             fi
-            BASE="${BASE:-0.0.0}"
-            BASE="${BASE%%[-+]*}"
-            IFS=. read -r MA MI PA <<<"${BASE}"
-            MA="${MA:-0}"; MI="${MI:-0}"; PA="${PA:-0}"
-            case "${BUMP}" in
-              major) MA=$((MA + 1)); MI=0; PA=0 ;;
-              minor) MI=$((MI + 1)); PA=0 ;;
-              *) PA=$((PA + 1)) ;;
-            esac
-            VER="${MA}.${MI}.${PA}"
-            TAG="v${VER}"
-            echo "Auto-bumped ${BUMP}: ${LATEST:-none} → ${VER}"
           else
             VER="${RAW#v}"
             if [[ ! "${VER}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([.+-][A-Za-z0-9.+-]*)?$ ]]; then
@@ -136,7 +148,6 @@ jobs:
           echo "publish=${PUBLISH}" >>"$GITHUB_OUTPUT"
           echo "reuse_emitters=${REUSE}" >>"$GITHUB_OUTPUT"
           echo "Using version ${VER} (tag ${TAG}), publish=${PUBLISH}, reuse_emitters=${REUSE}"
-
   build:
     name: ${{ matrix.artifact }}
     needs: prepare
@@ -265,6 +276,8 @@ jobs:
         with:
           artifact: ${{ matrix.artifact }}
 
+      # Host/UI-only bumps keep the same psxrecomp gitlink → cache hit skips
+      # rebuilding emitters (see reuse_cached_emitters / HOST_ONLY_RELEASES.md).
       - name: Emitter cache key
         id: emitter_cache
         shell: bash
@@ -292,6 +305,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Restored cache or fresh build must leave packager inputs in place.
           test -d build-recompiler
           find build-recompiler -type f \( -name 'psxrecomp-game*' -o -name 'psxrecomp-bios*' \) | head
           count="$(find build-recompiler -type f \( -name 'psxrecomp-game*' -o -name 'psxrecomp-bios*' \) | wc -l | tr -d ' ')"
@@ -306,7 +320,6 @@ jobs:
         with:
           key: setup-host-${{ matrix.artifact }}
           max-size: 800M
-
 
       - name: Configure & build setup host
         env:
@@ -371,6 +384,9 @@ jobs:
           # SCPH1001) locally via the wizard, then rebuild.
           # Prefer -DPSXRECOMP_FORCE_SETUP_HOST=ON (psxrecomp_add_game_runtime).
           # Legacy -DYOURGAME_FORCE_SETUP_HOST=ON still works if the title wires it.
+          # PSX_SETUP_WIZARD is required with FORCE_SETUP_HOST (CMakeLists
+          # ENABLE_SETUP_WIZARD + -D here). Without it the zip never opens
+          # first-run / Generate & rebuild.
           # Title root codegen_setup.c must define
           # psx_game_codegen_forward_if_built (see codegen_setup.c.in) or link
           # fails — main.cpp always calls it, including setup-host CI builds.
@@ -380,15 +396,19 @@ jobs:
           # recomp_net/session.h. Also add -DPSX_NETPLAY=ON to this cmake
           # invocation for CI belt-and-suspenders (do not leave it commented
           # mid-continuation — that breaks the shell line).
-          # With PSX_NETPLAY, runtime.cmake defaults RNET_ENABLE_ICE=ON
-          # (libjuice FetchContent — needs network at configure).
+          # With PSX_NETPLAY, runtime.cmake defaults RNET_ENABLE_ICE=ON.
+          # recomp-net FetchContents libjuice via a pinned URL tarball (not
+          # git clone) so AppImage / mismatched libcurl hosts still configure.
+          # Offline: vendor under psxrecomp/lib/recomp-net/third_party/libjuice
+          # or pass -DRNET_LIBJUICE_ROOT=… / -DRNET_ENABLE_ICE=OFF.
           # Add title-specific -D flags here if needed (e.g. -DMOTK_NATIVE=OFF).
+          # Netplay titles: also pass -DPSX_NETPLAY=ON here (belt-and-suspenders
+          # when CMakeLists already FORCE-caches it before include(runtime.cmake)).
           cmake -S . -B build-ci -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DPSXRECOMP_FORCE_SETUP_HOST=ON \
             -DPSXRECOMP_ALLOW_NO_BIOS=ON \
             -DPSX_SETUP_WIZARD=ON \
-            -DPSX_NETPLAY=ON \
             -DPSX_GAME_VERSION="${RELEASE_VERSION}" \
             "${EXTRA[@]}" 2>&1 | tee build-ci-configure.log
           if ! grep -q 'Vulkan backend: headers' build-ci-configure.log; then
@@ -480,6 +500,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ needs.prepare.outputs.tag }}
+          # Quoted: titles may contain ':' (e.g. "Marvel vs. Capcom: …").
           name: "TwistedMetal4 Recompiled ${{ needs.prepare.outputs.tag }}"
           files: |
             dist/twistedmetal4-*.zip
