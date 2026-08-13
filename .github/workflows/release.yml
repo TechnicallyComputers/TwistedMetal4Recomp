@@ -504,6 +504,30 @@ jobs:
             exit 1
           fi
           cmake --build build-ci --target psx-runtime -j"${JOBS}"
+          # Lobby list pin must match RELEASE_VERSION (package_setup_host enforces).
+          STAMP=""
+          for cand in \
+              build-ci/psx_game_version.txt \
+              build-ci/Release/psx_game_version.txt \
+              build-ci/*/psx_game_version.txt
+          do
+            if [[ -f "${cand}" ]]; then STAMP="${cand}"; break; fi
+          done
+          if [[ -z "${STAMP}" ]]; then
+            # Fallback: stamp next to the host exe
+            STAMP="$(find build-ci -name psx_game_version.txt -type f 2>/dev/null | head -n1 || true)"
+          fi
+          if [[ -z "${STAMP}" || ! -f "${STAMP}" ]]; then
+            echo "::error::missing psx_game_version.txt after build (update psxrecomp submodule)"
+            exit 1
+          fi
+          BUILT="$(tr -d '[:space:]' <"${STAMP}")"
+          BUILT="${BUILT#v}"
+          if [[ "${BUILT}" != "${RELEASE_VERSION}" ]]; then
+            echo "::error::lobby pin stamp ${BUILT} != RELEASE_VERSION ${RELEASE_VERSION} (${STAMP})"
+            exit 1
+          fi
+          echo "lobby pin ok: ${BUILT} (${STAMP})"
 
       - name: Package setup zip
         run: |
