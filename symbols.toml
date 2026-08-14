@@ -9,3 +9,64 @@ name = "BootEntry"
 emit = false
 status = "guessed"
 note = "SYSTEM.CNF / EXE entry PC (probe seed)"
+
+# GTE leaves in the 0x80024D88–0x80024E8F hole (seeds jumped 0x80024D2C → 0x80024FA0).
+# Overlay at 0x80112554 jal's GteLoadWordRtptOtz; delay-slot stores matched scratchpad.
+# Previous leaf tail-jumps (j 0x80024C24), so vet_seeds jr$ra+nop rejects — still entries.
+
+[[func]]
+pc = 0x80024D88
+name = "GteLoadWordRtptOtz"
+emit = true
+status = "confirmed"
+note = "lwc2 SXY×3, cop2 RTPT-class, j 0x8003DE48 (OTZ/fog). Overlay jal 0x80112554."
+
+[[func]]
+pc = 0x80024DB8
+name = "GteLoadWordRtptOtzB"
+emit = true
+status = "confirmed"
+note = "lwc2 SXY×3, cop2 RTPT-class, j 0x800416D8"
+
+[[func]]
+pc = 0x80024DE8
+name = "GteLoadHalfRtptOtz"
+emit = true
+status = "confirmed"
+note = "lh SXY×3, cop2 RTPT-class, j 0x8003DE48"
+
+[[func]]
+pc = 0x80024E24
+name = "GteLoadHalfRtptOtzB"
+emit = true
+status = "confirmed"
+note = "lh SXY×3, cop2 RTPT-class, j 0x800416D8"
+
+[[func]]
+pc = 0x80024E60
+name = "GteLoadWordRtpt"
+emit = true
+status = "confirmed"
+note = "lwc2 SXY×3, cop2 RTPT-class, jr ra"
+
+[[site]]
+pc = 0x80112554
+name = "OverlayJalGteLoadWordRtptOtz"
+status = "confirmed"
+note = "Overlay jal 0x80024D88 (delay sw a1,8(a0)); $ra=0x8011255C. Do not AOT — overlay RAM."
+
+# Word in-place GTE xform. 0x8002CCF0 jumps over this to 0x8002CD3C; only overlays jal it.
+# Live RAM at FAIL-FAST frame 9007 matched EXE (lw t0/t1/t2, jal 0x8002CD5C, sw to a1, jr a3).
+
+[[func]]
+pc = 0x8002CD04
+name = "GteXformWordToDst"
+emit = true
+status = "confirmed"
+note = "lw xyz from a0, save ra in a3, jal 0x8002CD5C, sw to a1. Overlay jal 0x80126B4C (a0=a1=scratchpad)."
+
+[[site]]
+pc = 0x80126B4C
+name = "OverlayJalGteXformWordToDst"
+status = "confirmed"
+note = "Overlay jal 0x8002CD04 (delay sw a2,8(s0)); $ra=0x80126B54. Do not AOT — overlay RAM."

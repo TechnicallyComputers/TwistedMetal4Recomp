@@ -7,3 +7,33 @@
 /* guessed: SYSTEM.CNF / EXE entry PC (probe seed) */
 #define PSX_FN_BootEntry 0x80010000u
 #define func_80010000 BootEntry  /* alias */
+
+/* confirmed: lwc2 SXY×3, cop2 RTPT-class, j 0x8003DE48 (OTZ/fog). Overlay jal 0x80112554. */
+#define PSX_FN_GteLoadWordRtptOtz 0x80024D88u
+#define func_80024D88 GteLoadWordRtptOtz  /* alias */
+/* emit=true — promote in recompiler/map when ready */
+
+/* confirmed: lwc2 SXY×3, cop2 RTPT-class, j 0x800416D8 */
+#define PSX_FN_GteLoadWordRtptOtzB 0x80024DB8u
+#define func_80024DB8 GteLoadWordRtptOtzB  /* alias */
+/* emit=true — promote in recompiler/map when ready */
+
+/* confirmed: lh SXY×3, cop2 RTPT-class, j 0x8003DE48 */
+#define PSX_FN_GteLoadHalfRtptOtz 0x80024DE8u
+#define func_80024DE8 GteLoadHalfRtptOtz  /* alias */
+/* emit=true — promote in recompiler/map when ready */
+
+/* confirmed: lh SXY×3, cop2 RTPT-class, j 0x800416D8 */
+#define PSX_FN_GteLoadHalfRtptOtzB 0x80024E24u
+#define func_80024E24 GteLoadHalfRtptOtzB  /* alias */
+/* emit=true — promote in recompiler/map when ready */
+
+/* confirmed: lwc2 SXY×3, cop2 RTPT-class, jr ra */
+#define PSX_FN_GteLoadWordRtpt 0x80024E60u
+#define func_80024E60 GteLoadWordRtpt  /* alias */
+/* emit=true — promote in recompiler/map when ready */
+
+/* confirmed: lw xyz from a0, save ra in a3, jal 0x8002CD5C, sw to a1. Overlay jal 0x80126B4C (a0=a1=scratchpad). */
+#define PSX_FN_GteXformWordToDst 0x8002CD04u
+#define func_8002CD04 GteXformWordToDst  /* alias */
+/* emit=true — promote in recompiler/map when ready */
