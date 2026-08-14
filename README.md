@@ -6,6 +6,12 @@
 [![GitHub release](https://img.shields.io/github/v/release/TechnicallyComputers/TwistedMetal4Recomp)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
 <!-- /retcomm-readme-metrics -->
 
+<!-- retcomm-readme-boxart -->
+<p align="center">
+  <img src="launcher_assets/img/boxart.png" alt="TwistedMetal4 box art" width="280">
+</p>
+<!-- /retcomm-readme-boxart -->
+
 Static recompilation of **TwistedMetal4** built on
 [psxrecomp](https://github.com/mstan/psxrecomp) and
 [recomp-ui](https://github.com/mstan/recomp-ui).

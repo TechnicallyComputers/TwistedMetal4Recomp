@@ -2,4 +2,4 @@ Box art sourced from libretro-thumbnails (Named_Boxarts).
 Matched name: Twisted Metal 4 (USA) (Rev 1)
 URL: https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Twisted%20Metal%204%20(USA)%20(Rev%201).png
 https://github.com/libretro-thumbnails/libretro-thumbnails
-Convert: PNG → 32-bit TGA for recomp-ui LAUNCHER_BOXART.
+PNG is for README; TGA is for recomp-ui LAUNCHER_BOXART.
