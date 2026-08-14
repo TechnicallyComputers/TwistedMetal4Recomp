@@ -4,11 +4,6 @@
 [![GitHub downloads (all assets, all releases)](https://img.shields.io/github/downloads/TechnicallyComputers/TwistedMetal4Recomp/total)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases)
 [![GitHub downloads (latest release)](https://img.shields.io/github/downloads/TechnicallyComputers/TwistedMetal4Recomp/latest/total)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
 [![GitHub release](https://img.shields.io/github/v/release/TechnicallyComputers/TwistedMetal4Recomp)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
-
-[![Linux](https://img.shields.io/github/downloads/TechnicallyComputers/TwistedMetal4Recomp/latest/twistedmetal4-%2A-linux-x64.zip)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
-[![Windows](https://img.shields.io/github/downloads/TechnicallyComputers/TwistedMetal4Recomp/latest/twistedmetal4-%2A-windows-x64.zip)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
-[![macOS arm64](https://img.shields.io/github/downloads/TechnicallyComputers/TwistedMetal4Recomp/latest/twistedmetal4-%2A-macos-arm64.zip)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
-[![macOS x64](https://img.shields.io/github/downloads/TechnicallyComputers/TwistedMetal4Recomp/latest/twistedmetal4-%2A-macos-x64.zip)](https://github.com/TechnicallyComputers/TwistedMetal4Recomp/releases/latest)
 <!-- /retcomm-readme-metrics -->
 
 Static recompilation of **TwistedMetal4** built on
