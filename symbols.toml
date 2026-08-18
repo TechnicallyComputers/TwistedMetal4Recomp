@@ -1,7 +1,8 @@
-# TwistedMetal4 — progressive symbol map (partial decomp)
-# Discover → label here → manipulate via PSX_FN_* (tools/sync_symbols.py).
-# Gate emit=true only when the entry is safe to own for AOT / host hooks.
-# See psxrecomp/docs/SYMBOLS.md.
+# SCUS_945.60 — progressive symbol map
+# Discover → label here → manipulate via PSX_FN_* (sync_symbols.py).
+# Written by `psxrecomp-analyze --emit-symbols`. Existing names,
+# statuses and notes are preserved verbatim on every rewrite.
+# See psxrecomp/docs/SYMBOLS.md and docs/FUNCTION_DISCOVERY.md.
 
 [[func]]
 pc = 0x80010000
@@ -10,9 +11,1321 @@ emit = false
 status = "guessed"
 note = "SYSTEM.CNF / EXE entry PC (probe seed)"
 
-# GTE leaves in the 0x80024D88–0x80024E8F hole (seeds jumped 0x80024D2C → 0x80024FA0).
-# Overlay at 0x80112554 jal's GteLoadWordRtptOtz; delay-slot stores matched scratchpad.
-# Previous leaf tail-jumps (j 0x80024C24), so vet_seeds jr$ra+nop rejects — still entries.
+[[func]]
+pc = 0x8001008C
+name = "func_8001008C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80010114
+name = "func_80010114"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80010158
+name = "func_80010158"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 6 caller(s), leaf"
+
+[[func]]
+pc = 0x80010164
+name = "func_80010164"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 4 caller(s), leaf"
+
+[[func]]
+pc = 0x8001018C
+name = "func_8001018C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800101B4
+name = "func_800101B4"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800102C0
+name = "func_800102C0"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001031C
+name = "func_8001031C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80010460
+name = "func_80010460"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80010488
+name = "func_80010488"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800110CC
+name = "func_800110CC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001123C
+name = "func_8001123C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 6 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800112A0
+name = "func_800112A0"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800114DC
+name = "func_800114DC"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80011768
+name = "func_80011768"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x80011808
+name = "func_80011808"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80011B30
+name = "func_80011B30"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80011BD0
+name = "func_80011BD0"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80011CF4
+name = "func_80011CF4"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80011DC0
+name = "func_80011DC0"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80011F0C
+name = "func_80011F0C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001201C
+name = "func_8001201C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800120D8
+name = "func_800120D8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012148
+name = "func_80012148"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 9 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012288
+name = "func_80012288"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800123DC
+name = "func_800123DC"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012438
+name = "func_80012438"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 6 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800125D8
+name = "func_800125D8"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800127A4
+name = "func_800127A4"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800128CC
+name = "func_800128CC"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012974
+name = "func_80012974"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800129C8
+name = "func_800129C8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012A24
+name = "func_80012A24"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012AA0
+name = "func_80012AA0"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80012AD0
+name = "func_80012AD0"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012BF0
+name = "func_80012BF0"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012C80
+name = "func_80012C80"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012CF8
+name = "func_80012CF8"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012D68
+name = "func_80012D68"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80012E18
+name = "func_80012E18"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012E74
+name = "func_80012E74"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012F8C
+name = "func_80012F8C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 6 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80012FC8
+name = "func_80012FC8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x800130F8
+name = "func_800130F8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 6 caller(s), leaf"
+
+[[func]]
+pc = 0x80013110
+name = "func_80013110"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 6 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001315C
+name = "func_8001315C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800131CC
+name = "func_800131CC"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 10 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800131F4
+name = "func_800131F4"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80013214
+name = "func_80013214"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001325C
+name = "func_8001325C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80013288
+name = "func_80013288"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800132FC
+name = "func_800132FC"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800133A8
+name = "func_800133A8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800137FC
+name = "func_800137FC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80013AE8
+name = "func_80013AE8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80013C3C
+name = "func_80013C3C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 9 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80013D54
+name = "func_80013D54"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 18 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80014020
+name = "func_80014020"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800143A0
+name = "func_800143A0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001441C
+name = "func_8001441C"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800144D0
+name = "func_800144D0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80014544
+name = "func_80014544"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800145C8
+name = "func_800145C8"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80014720
+name = "func_80014720"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001474C
+name = "func_8001474C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80014FBC
+name = "func_80014FBC"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001507C
+name = "func_8001507C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80015178
+name = "func_80015178"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80015D94
+name = "func_80015D94"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80015E6C
+name = "func_80015E6C"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80015EE4
+name = "func_80015EE4"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80016718
+name = "func_80016718"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80016744
+name = "func_80016744"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80016BA8
+name = "func_80016BA8"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80017174
+name = "func_80017174"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017280
+name = "func_80017280"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017484
+name = "func_80017484"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800174BC
+name = "func_800174BC"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001765C
+name = "func_8001765C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001783C
+name = "func_8001783C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8001786C
+name = "func_8001786C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800178A0
+name = "func_800178A0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800178C8
+name = "func_800178C8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001790C
+name = "func_8001790C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017944
+name = "func_80017944"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017CD8
+name = "func_80017CD8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 14 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017CF8
+name = "func_80017CF8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017D18
+name = "func_80017D18"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80017D60
+name = "func_80017D60"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 29 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80017E40
+name = "func_80017E40"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80017E5C
+name = "func_80017E5C"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 10 caller(s), leaf"
+
+[[func]]
+pc = 0x80017F90
+name = "func_80017F90"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 11 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800180C8
+name = "func_800180C8"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800180F8
+name = "func_800180F8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80018154
+name = "func_80018154"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800181C0
+name = "func_800181C0"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80018428
+name = "func_80018428"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800184F8
+name = "func_800184F8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80018528
+name = "func_80018528"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001858C
+name = "func_8001858C"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80018698
+name = "func_80018698"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x800186FC
+name = "func_800186FC"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001873C
+name = "func_8001873C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001877C
+name = "func_8001877C"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80018AF4
+name = "func_80018AF4"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80018BA4
+name = "func_80018BA4"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80019700
+name = "func_80019700"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800197D4
+name = "func_800197D4"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80019940
+name = "func_80019940"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80019E68
+name = "func_80019E68"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80019F3C
+name = "func_80019F3C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80019F60
+name = "func_80019F60"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A11C
+name = "func_8001A11C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A21C
+name = "func_8001A21C"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001A254
+name = "func_8001A254"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A2A8
+name = "func_8001A2A8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A538
+name = "func_8001A538"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A56C
+name = "func_8001A56C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A610
+name = "func_8001A610"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A840
+name = "func_8001A840"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A87C
+name = "func_8001A87C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A8A8
+name = "func_8001A8A8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001A8E0
+name = "func_8001A8E0"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001A8F0
+name = "func_8001A8F0"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001B0A0
+name = "func_8001B0A0"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001B67C
+name = "func_8001B67C"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8001B924
+name = "func_8001B924"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001DD9C
+name = "func_8001DD9C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001E990
+name = "func_8001E990"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001F458
+name = "func_8001F458"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001F598
+name = "func_8001F598"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001F880
+name = "func_8001F880"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001F9BC
+name = "func_8001F9BC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001FA40
+name = "func_8001FA40"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001FB1C
+name = "func_8001FB1C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8001FB28
+name = "func_8001FB28"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8001FE04
+name = "func_8001FE04"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020078
+name = "func_80020078"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80020104
+name = "func_80020104"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800204A0
+name = "func_800204A0"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020518
+name = "func_80020518"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020594
+name = "func_80020594"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800205B8
+name = "func_800205B8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800205C0
+name = "func_800205C0"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8002061C
+name = "func_8002061C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x800207AC
+name = "func_800207AC"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020B44
+name = "func_80020B44"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020CBC
+name = "func_80020CBC"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80020E80
+name = "func_80020E80"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020F4C
+name = "func_80020F4C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80020FE8
+name = "func_80020FE8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021094
+name = "func_80021094"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021118
+name = "func_80021118"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800211B8
+name = "func_800211B8"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021204
+name = "func_80021204"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021264
+name = "func_80021264"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002153C
+name = "func_8002153C"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021690
+name = "func_80021690"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800217A0
+name = "func_800217A0"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800217E8
+name = "func_800217E8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021B88
+name = "func_80021B88"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021BEC
+name = "func_80021BEC"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021CF0
+name = "func_80021CF0"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80021FC8
+name = "func_80021FC8"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022020
+name = "func_80022020"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022210
+name = "func_80022210"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022834
+name = "func_80022834"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022900
+name = "func_80022900"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022C34
+name = "func_80022C34"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022D90
+name = "func_80022D90"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80022DE4
+name = "func_80022DE4"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022EE8
+name = "func_80022EE8"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022F3C
+name = "func_80022F3C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80022FBC
+name = "func_80022FBC"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80023078
+name = "func_80023078"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80023084
+name = "func_80023084"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002341C
+name = "func_8002341C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800234AC
+name = "func_800234AC"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80023678
+name = "func_80023678"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800237C0
+name = "func_800237C0"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002418C
+name = "func_8002418C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80024204
+name = "func_80024204"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80024478
+name = "func_80024478"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80024510
+name = "func_80024510"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002475C
+name = "func_8002475C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800247B8
+name = "func_800247B8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800247E4
+name = "func_800247E4"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002480C
+name = "func_8002480C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
 
 [[func]]
 pc = 0x80024D88
@@ -49,14 +1362,26 @@ emit = true
 status = "confirmed"
 note = "lwc2 SXY×3, cop2 RTPT-class, jr ra"
 
-[[site]]
-pc = 0x80112554
-name = "OverlayJalGteLoadWordRtptOtz"
-status = "confirmed"
-note = "Overlay jal 0x80024D88 (delay sw a1,8(a0)); $ra=0x8011255C. Do not AOT — overlay RAM."
+[[func]]
+pc = 0x80025088
+name = "func_80025088"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
 
-# Word in-place GTE xform. 0x8002CCF0 jumps over this to 0x8002CD3C; only overlays jal it.
-# Live RAM at FAIL-FAST frame 9007 matched EXE (lw t0/t1/t2, jal 0x8002CD5C, sw to a1, jr a3).
+[[func]]
+pc = 0x80028AB8
+name = "func_80028AB8"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80028B98
+name = "func_80028B98"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
 
 [[func]]
 pc = 0x8002CD04
@@ -65,8 +1390,1563 @@ emit = true
 status = "confirmed"
 note = "lw xyz from a0, save ra in a3, jal 0x8002CD5C, sw to a1. Overlay jal 0x80126B4C (a0=a1=scratchpad)."
 
-[[site]]
-pc = 0x80126B4C
-name = "OverlayJalGteXformWordToDst"
-status = "confirmed"
-note = "Overlay jal 0x8002CD04 (delay sw a2,8(s0)); $ra=0x80126B54. Do not AOT — overlay RAM."
+[[func]]
+pc = 0x8002CD5C
+name = "func_8002CD5C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8002D02C
+name = "func_8002D02C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002D2A0
+name = "func_8002D2A0"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002F070
+name = "func_8002F070"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8002F0F4
+name = "func_8002F0F4"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002F7F8
+name = "func_8002F7F8"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002FA1C
+name = "func_8002FA1C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002FDF8
+name = "func_8002FDF8"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8002FE64
+name = "func_8002FE64"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800301A8
+name = "func_800301A8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800302B4
+name = "func_800302B4"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003056C
+name = "func_8003056C"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003091C
+name = "func_8003091C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80031054
+name = "func_80031054"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80031C2C
+name = "func_80031C2C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80031F7C
+name = "func_80031F7C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80031FBC
+name = "func_80031FBC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032064
+name = "func_80032064"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032164
+name = "func_80032164"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032290
+name = "func_80032290"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032470
+name = "func_80032470"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032598
+name = "func_80032598"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800325C8
+name = "func_800325C8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032944
+name = "func_80032944"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800329D0
+name = "func_800329D0"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800329FC
+name = "func_800329FC"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032AB4
+name = "func_80032AB4"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032B20
+name = "func_80032B20"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032E58
+name = "func_80032E58"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80032EF8
+name = "func_80032EF8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033314
+name = "func_80033314"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800336E0
+name = "func_800336E0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003395C
+name = "func_8003395C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800339C8
+name = "func_800339C8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033A5C
+name = "func_80033A5C"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033AB4
+name = "func_80033AB4"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033C9C
+name = "func_80033C9C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033D6C
+name = "func_80033D6C"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033E08
+name = "func_80033E08"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033E78
+name = "func_80033E78"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80033EB0
+name = "func_80033EB0"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80034020
+name = "func_80034020"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80034034
+name = "func_80034034"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80034138
+name = "func_80034138"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80034190
+name = "func_80034190"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 9 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80034644
+name = "func_80034644"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 11 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80034674
+name = "func_80034674"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80035070
+name = "func_80035070"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800351AC
+name = "func_800351AC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800360B8
+name = "func_800360B8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80036260
+name = "func_80036260"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800363AC
+name = "func_800363AC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80037498
+name = "func_80037498"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80037610
+name = "func_80037610"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80037ACC
+name = "func_80037ACC"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80037AF8
+name = "func_80037AF8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80037B24
+name = "func_80037B24"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80037B64
+name = "func_80037B64"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80038008
+name = "func_80038008"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80038410
+name = "func_80038410"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x800384BC
+name = "func_800384BC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80038804
+name = "func_80038804"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80038854
+name = "func_80038854"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80038964
+name = "func_80038964"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800389AC
+name = "func_800389AC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800389D0
+name = "func_800389D0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80039E88
+name = "func_80039E88"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80039FFC
+name = "func_80039FFC"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A10C
+name = "func_8003A10C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A16C
+name = "func_8003A16C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A204
+name = "func_8003A204"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 9 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A26C
+name = "func_8003A26C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A388
+name = "func_8003A388"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A4B0
+name = "func_8003A4B0"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A570
+name = "func_8003A570"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A6F0
+name = "func_8003A6F0"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A79C
+name = "func_8003A79C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A7F8
+name = "func_8003A7F8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003A868
+name = "func_8003A868"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003AA34
+name = "func_8003AA34"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003B050
+name = "func_8003B050"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003B248
+name = "func_8003B248"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003B4B8
+name = "func_8003B4B8"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003B4D8
+name = "func_8003B4D8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003B570
+name = "func_8003B570"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003B608
+name = "func_8003B608"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003B624
+name = "func_8003B624"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003BF48
+name = "func_8003BF48"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 0 caller(s), leaf"
+
+[[func]]
+pc = 0x8003C4AC
+name = "func_8003C4AC"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003C8B0
+name = "func_8003C8B0"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003CD90
+name = "func_8003CD90"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8003CDB8
+name = "func_8003CDB8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 8 caller(s), leaf"
+
+[[func]]
+pc = 0x8003CDEC
+name = "func_8003CDEC"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003CE28
+name = "func_8003CE28"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003CE58
+name = "func_8003CE58"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003CE88
+name = "func_8003CE88"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003CEB8
+name = "func_8003CEB8"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003CF7C
+name = "func_8003CF7C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8003CFA4
+name = "func_8003CFA4"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 4 caller(s), leaf"
+
+[[func]]
+pc = 0x8003D4F0
+name = "func_8003D4F0"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003D620
+name = "func_8003D620"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003D6F8
+name = "func_8003D6F8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003D7A8
+name = "func_8003D7A8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 29 caller(s), leaf"
+
+[[func]]
+pc = 0x8003D7E8
+name = "func_8003D7E8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 12 caller(s), leaf"
+
+[[func]]
+pc = 0x8003D838
+name = "func_8003D838"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003D84C
+name = "func_8003D84C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003D868
+name = "func_8003D868"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 25 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003D9E0
+name = "func_8003D9E0"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003DA78
+name = "func_8003DA78"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DAB8
+name = "func_8003DAB8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DAD8
+name = "func_8003DAD8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DB48
+name = "func_8003DB48"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DB68
+name = "bios_A0_44_FlushCache"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk A0:44 FlushCache — 1 caller(s)"
+
+[[func]]
+pc = 0x8003DB78
+name = "func_8003DB78"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 6 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DBE8
+name = "func_8003DBE8"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DC18
+name = "func_8003DC18"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 19 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DC88
+name = "func_8003DC88"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003DCF8
+name = "func_8003DCF8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003DD9C
+name = "func_8003DD9C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003DE48
+name = "func_8003DE48"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x8003E0E8
+name = "func_8003E0E8"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003E0F8
+name = "func_8003E0F8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003E118
+name = "func_8003E118"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 4 caller(s), leaf"
+
+[[func]]
+pc = 0x8003E138
+name = "func_8003E138"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8003E168
+name = "func_8003E168"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003E248
+name = "func_8003E248"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003E2D4
+name = "func_8003E2D4"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003E3A0
+name = "func_8003E3A0"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003E614
+name = "func_8003E614"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003E694
+name = "func_8003E694"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003E6E8
+name = "func_8003E6E8"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003F2E0
+name = "func_8003F2E0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003F668
+name = "func_8003F668"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003F804
+name = "func_8003F804"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003F938
+name = "func_8003F938"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 6 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003F9C8
+name = "func_8003F9C8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003FA88
+name = "func_8003FA88"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x8003FA98
+name = "func_8003FA98"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003FAB8
+name = "func_8003FAB8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8003FB30
+name = "func_8003FB30"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003FBCC
+name = "func_8003FBCC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 5 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003FBEC
+name = "func_8003FBEC"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003FC0C
+name = "func_8003FC0C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 4 caller(s), leaf"
+
+[[func]]
+pc = 0x8003FC20
+name = "func_8003FC20"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 8 caller(s), leaf"
+
+[[func]]
+pc = 0x8003FC34
+name = "func_8003FC34"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 8 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003FD70
+name = "func_8003FD70"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x8003FEA4
+name = "func_8003FEA4"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80040050
+name = "func_80040050"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80040098
+name = "func_80040098"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 3 caller(s), leaf"
+
+[[func]]
+pc = 0x8004019C
+name = "func_8004019C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80040228
+name = "func_80040228"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x800402A8
+name = "func_800402A8"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x800404A8
+name = "func_800404A8"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800406F8
+name = "func_800406F8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80040878
+name = "func_80040878"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800408E8
+name = "func_800408E8"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80040918
+name = "func_80040918"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80040958
+name = "func_80040958"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x80040BEC
+name = "func_80040BEC"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80040C78
+name = "func_80040C78"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80040C98
+name = "func_80040C98"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80040CB8
+name = "func_80040CB8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80040CD8
+name = "func_80040CD8"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80040E88
+name = "func_80040E88"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80041488
+name = "func_80041488"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800414AC
+name = "func_800414AC"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80041B00
+name = "func_80041B00"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80041B3C
+name = "func_80041B3C"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80041BD0
+name = "func_80041BD0"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80041C10
+name = "func_80041C10"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80041CE0
+name = "func_80041CE0"
+emit = false
+status = "guessed"
+note = "verified — 4 arg(s), 24 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80041D20
+name = "bios_A0_49_GPU_cw"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk A0:49 GPU_cw — 1 caller(s)"
+
+[[func]]
+pc = 0x80041D30
+name = "func_80041D30"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80041DF0
+name = "bios_B0_19_SetCustomExitFromException"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:19 SetCustomExitFromException — 0 caller(s)"
+
+[[func]]
+pc = 0x800421C8
+name = "bios_A0_72_CdRemove"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk A0:72 CdRemove — 0 caller(s)"
+
+[[func]]
+pc = 0x800421E0
+name = "func_800421E0"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x800421F0
+name = "bios_B0_17_ReturnFromException"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:17 ReturnFromException — 1 caller(s)"
+
+[[func]]
+pc = 0x80042200
+name = "bios_B0_5B_ChangeClearPad"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:5B ChangeClearPad — 1 caller(s)"
+
+[[func]]
+pc = 0x80042210
+name = "bios_C0_0A_ChangeClearRCnt"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk C0:0A ChangeClearRCnt — 3 caller(s)"
+
+[[func]]
+pc = 0x80042220
+name = "func_80042220"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x80042230
+name = "bios_B0_18_SetDefaultExitFromException"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:18 SetDefaultExitFromException — 0 caller(s)"
+
+[[func]]
+pc = 0x80042240
+name = "func_80042240"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80042320
+name = "bios_A0_39_InitHeap"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk A0:39 InitHeap — 0 caller(s)"
+
+[[func]]
+pc = 0x80042330
+name = "func_80042330"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 8 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800424A8
+name = "func_800424A8"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x800426E0
+name = "func_800426E0"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80043160
+name = "func_80043160"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x8004317C
+name = "func_8004317C"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80043A1C
+name = "func_80043A1C"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80043CB4
+name = "func_80043CB4"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80043CD4
+name = "func_80043CD4"
+emit = false
+status = "guessed"
+note = "high — 1 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80043CE8
+name = "func_80043CE8"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80043D28
+name = "func_80043D28"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80043D60
+name = "func_80043D60"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80043D94
+name = "func_80043D94"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800447F0
+name = "func_800447F0"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80044820
+name = "func_80044820"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80044D84
+name = "func_80044D84"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80045004
+name = "func_80045004"
+emit = false
+status = "guessed"
+note = "verified — 2 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x800452CC
+name = "func_800452CC"
+emit = false
+status = "guessed"
+note = "high — 4 arg(s), 4 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80045760
+name = "func_80045760"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 5 caller(s), leaf"
+
+[[func]]
+pc = 0x80045834
+name = "func_80045834"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80045970
+name = "func_80045970"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80045F90
+name = "bios_B0_07_DeliverEvent"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:07 DeliverEvent — 0 caller(s)"
+
+[[func]]
+pc = 0x80045FA0
+name = "func_80045FA0"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80046088
+name = "func_80046088"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80046100
+name = "func_80046100"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80046380
+name = "func_80046380"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80046A0C
+name = "func_80046A0C"
+emit = false
+status = "guessed"
+note = "high — 3 arg(s), 1 caller(s), leaf"
+
+[[func]]
+pc = 0x80046A50
+name = "func_80046A50"
+emit = false
+status = "guessed"
+note = "high — 2 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80046BD8
+name = "func_80046BD8"
+emit = false
+status = "guessed"
+note = "verified — 0 arg(s), 2 caller(s), leaf"
+
+[[func]]
+pc = 0x80046C40
+name = "bios_B0_0B_TestEvent"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:0B TestEvent — 1 caller(s)"
+
+[[func]]
+pc = 0x80046C50
+name = "func_80046C50"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80046C80
+name = "bios_B0_09_CloseEvent"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:09 CloseEvent — 1 caller(s)"
+
+[[func]]
+pc = 0x80046C90
+name = "bios_B0_0D_DisableEvent"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:0D DisableEvent — 1 caller(s)"
+
+[[func]]
+pc = 0x800472B0
+name = "func_800472B0"
+emit = false
+status = "guessed"
+note = "verified — 3 arg(s), 1 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80047950
+name = "func_80047950"
+emit = false
+status = "guessed"
+note = "verified — 1 arg(s), 3 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80047A4C
+name = "func_80047A4C"
+emit = false
+status = "guessed"
+note = "high — 0 arg(s), 2 caller(s), non-leaf"
+
+[[func]]
+pc = 0x80047BB0
+name = "bios_C0_03_SysDeqIntRP"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk C0:03 SysDeqIntRP — 2 caller(s)"
+
+[[func]]
+pc = 0x80047BC0
+name = "bios_C0_02_SysEnqIntRP"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk C0:02 SysEnqIntRP — 1 caller(s)"
+
+[[func]]
+pc = 0x800482C0
+name = "bios_B0_08_OpenEvent"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:08 OpenEvent — 1 caller(s)"
+
+[[func]]
+pc = 0x800482D0
+name = "bios_B0_0C_EnableEvent"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:0C EnableEvent — 1 caller(s)"
+
+[[func]]
+pc = 0x800482E0
+name = "bios_B0_35_FileWrite"
+emit = false
+status = "guessed"
+note = "kernel dispatch thunk B0:35 FileWrite — 2 caller(s)"
