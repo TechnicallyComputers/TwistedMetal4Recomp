@@ -16928,20 +16928,20 @@ static const uint16_t k_psx_game_dispatch_index[] = {
     10758u, 0u, 0u, 10759u, 10760u, 0u, 10761u,
 };
 
-/* PS1 segments alias the same physical RAM. A game whose PS-X EXE
- * header carries KUSEG addresses (load address and entry PC without the
- * KSEG bit) executes with a KUSEG PC, while this table is keyed by the
- * recompiler's KSEG-normalized addresses. Comparing raw values made every
- * lookup fail for such a title: 0x0001xxxx is always below 0x8001xxxx, so
- * the search collapsed and returned no entry, silently routing all game
- * code to the interpreter. Compare the 29-bit physical address instead;
- * the table is sorted by the same masked key. */
+/* A PC carries a segment (KUSEG 0x0..., KSEG0 0x8..., KSEG1 0xA...), and
+ * code identity is the full PC: each body bakes the links, EPCs, fetch
+ * tags and store PCs of the segment it was compiled for
+ * (docs/SEGMENT_AWARE_CODE.md §5.5). Find the physical word's row, then
+ * require the exact PC. A PC in another segment at the same word is a
+ * segment miss: no row here, but still game text (physical), so dispatch
+ * interprets it and records it, and never runs this body for it. */
 static const PsxGameDispatchEntry* psx_game_find_entry(uint32_t addr) {
     const uint32_t want = addr & 0x1FFFFFFFu;
     const uint32_t offset = want - 0x00010000u;
     if ((want & 3u) || offset > 0x382D8u) return 0;
     const uint32_t index = k_psx_game_dispatch_index[offset >> 2];
-    return index ? &k_psx_game_dispatch[index - 1u] : 0;
+    if (!index || k_psx_game_dispatch[index - 1u].addr != addr) return 0;
+    return &k_psx_game_dispatch[index - 1u];
 }
 
 /* Exact static-code validity for this entry's emitted CFG ranges. */
