@@ -7,8 +7,9 @@
 /out/
 /.happypath/
 
-# Setup-host: players Generate game C locally (CI clears generated/).
-/generated/
+# generated/ is COMMITTED: releases ship the compiled game, and CI builds it
+# from the game C in this repo (psxrecomp_cli.py generate, then git add
+# generated). Never ignore it.
 
 # Release packaging
 /release-stage/
@@ -75,3 +76,6 @@ starvation_dump.jsonl
 /*.png
 !/catalog_identity.json
 !/disc_probe.json
+
+# --- PSXRecomp (project studio) ---
+/analysis/

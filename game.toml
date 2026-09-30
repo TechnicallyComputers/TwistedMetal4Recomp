@@ -37,6 +37,9 @@ strict = true
 [runtime]
 window_title = "TwistedMetal4Recomp Recompiled"
 memcard_dir = "saves"
+# Enable the overlay loader: the shipped static shard / bundled overlay
+# toolchain turn streamed overlays native instead of running them interpreted.
+overlay_cache = true
 
 [video]
 renderer = "opengl"
