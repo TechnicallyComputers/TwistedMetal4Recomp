@@ -10,6 +10,7 @@ extern void debug_server_cyc_observe(uint32_t block_leader_phys);
 extern void cosim_block(uint32_t block_leader_phys);
 extern void cosim_instr(uint32_t pc);
 #endif
+extern int  psx_game_text_native_ok(uint32_t addr);  /* stale-static guard (dispatch shard) */
 extern int  psx_datashard_enter(CPUState* cpu, uint32_t key);  /* data-shard replay/capture (data_shards.c) */
 extern void psx_mod_function_entry(CPUState* cpu, uint32_t address);  /* trusted opt-in game-mod hook */
 extern void psx_datashard_ret(CPUState* cpu);                  /* data-shard capture finalize */
@@ -18,11 +19,13 @@ extern void psx_ws_sprite_tag(CPUState* cpu);  /* widescreen prim tag (gpu.c) */
 extern void psx_ws_mmx6_bg_stage_init(void);    /* ws 2D stage reveal invalidation (gpu.c) */
 extern int  psx_ws_x_margin(void);  /* widescreen cull-margin term (gpu.c) */
 extern int32_t psx_ws_player_x_bound(int32_t vanilla);  /* typed gameplay X bound */
+extern int32_t psx_ws_screen_x_bound(int32_t vanilla);  /* typed screen-pixel X bound */
 extern int  psx_ws_cull_sltiu(uint32_t sx, uint32_t imm);  /* ws auto screen-x cull (gpu.c) */
 extern int  psx_ws_cull_slti(uint32_t sx, uint32_t imm);   /* ws cull signed right edge (gpu.c) */
 extern int  psx_ws_cull_slti_lower(uint32_t sx, uint32_t imm); /* ws cull signed lower edge (gpu.c) */
-extern int  psx_ws_cull_slt_widen(uint32_t rs, uint32_t rt, int bound_is_rt); /* ws cull register-bound widen (gpu.c) */
 extern int  psx_ws_cull_bltz(uint32_t v);                  /* ws cull signed left edge (gpu.c) */
+extern int  psx_ws_cull_bgez(uint32_t v);                  /* ws cull signed left keep (gpu.c) */
+extern uint32_t psx_ws_clip_edge_x(uint32_t v, uint32_t w); /* ws cull clip-edge bound load (gpu.c) */
 extern int  psx_ws_cull_vxrange(uint32_t x, uint32_t imm); /* ws masked-u16 X window */
 extern int32_t psx_ws_depth_bound(int32_t imm);            /* ws aspect-scaled far bound */
 extern int32_t psx_ws_plane_nx(int32_t nx);                /* ws side-plane normal-X scale (gpu.c) */
