@@ -33,6 +33,15 @@ known_crc32 = [
 seeds = "seeds/ghidra_funcs.txt"
 out_dir = "generated"
 strict = true
+# Retail BIOS this title is built against. One pin: it selects the address
+# model the BIOS is recompiled under, the filename a supplied dump is staged
+# as, the profile Generate regenerates, and the backend linked into the build.
+# Absent = SCPH-1001. OpenBIOS still links alongside as the default for a
+# player with no dump of their own.
+bios_config = [
+  "psxrecomp/bios/RetailKernel.toml",  # SCPH-1001 / 5501 / 5502 — one shared kernel
+  "psxrecomp/bios/SCPH5500.toml",      # NTSC-J; its reset stub cannot share that code
+]
 
 [runtime]
 window_title = "TwistedMetal4Recomp Recompiled"
