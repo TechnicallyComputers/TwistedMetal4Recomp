@@ -8,22 +8,24 @@
 #
 # WHAT THIS SHIPS. A compiled game. The title COMMITS its generated/ game C
 # (psxrecomp_cli.py generate, run once by the developer from a legal disc);
-# CI builds the emitters, emits the OpenBIOS backend from the bundled MIT
-# image, links the committed game C into the runtime, and packages the
-# executable with its runtime data. Players download, point it at their disc,
-# and play. Nothing is generated or compiled on a player's machine, and no
-# emitters, sources, or CLI ship at the zip root.
+# the framework COMMITS its two BIOS backends (OpenBIOS and SCPH-1001) in
+# psxrecomp/generated/. CI links both into the runtime and packages the
+# executable with its runtime data. Players download, point it at their disc
+# (and, if they want the retail BIOS, their own dump — the runtime needs the
+# image's data and checks its identity), and play. Nothing is generated or
+# compiled on a player's machine, and no emitters, sources, or CLI ship at
+# the zip root.
 #
-# WHAT NEVER SHIPS. Disc images. Retail BIOS dumps and any C derived from one
-# (tools/ci/check_generated.sh fails the job if generated/SCPH* exists). The
-# overlay shard cache: it is compiled FROM THE DISC, which CI does not have,
-# so the committed static AOT shard (generated/overlays_static*.c) is linked
-# and the bundled overlay_toolchain/ compiles anything else from the player's
-# disc at runtime. Do not set PSX_PGO in CI.
+# WHAT NEVER SHIPS. Disc images and BIOS dumps (the zip carries only the
+# OpenBIOS image). The overlay shard cache: it is compiled FROM THE DISC,
+# which CI does not have, so the committed static AOT shard
+# (generated/overlays_static*.c) is linked and the bundled
+# overlay_toolchain/ compiles anything else from the player's disc at
+# runtime. Do not set PSX_PGO in CI.
 #
 # Shared (do not fork these into the title):
 #   ./psxrecomp/.github/actions/{build-emitters,fetch-toolchain}
-#   psxrecomp/tools/ci/{check_boot_exe,check_generated,generate_openbios,record_pins}.sh
+#   psxrecomp/tools/ci/{check_boot_exe,check_generated,record_pins}.sh
 #   psxrecomp/tools/{package_game_release,bundle_mingw_dlls}.sh
 #   psxrecomp/tools/release_stage.py  (mod catalog + overlay toolchain staging)
 #
@@ -213,9 +215,9 @@ jobs:
         shell: bash
         run: bash psxrecomp/tools/ci/check_boot_exe.sh .
 
-      # The release is built from COMMITTED game C. Fail here, at the top,
-      # when it is absent or untracked, and when any retail-BIOS-derived C
-      # or BIOS dump is in the tree.
+      # The release is built from COMMITTED C: the title's game C and the
+      # framework's BIOS backends. Fail here, at the top, when either is
+      # absent or untracked, or when a BIOS dump is in the tree.
       - name: Verify committed game C
         shell: bash
         run: bash psxrecomp/tools/ci/check_generated.sh --root .
@@ -362,11 +364,10 @@ jobs:
         with:
           artifact: ${{ matrix.artifact }}
 
-      # Emitters are needed for two things in a bundled release: psxrecomp-bios
-      # emits the OpenBIOS backend C, and psxrecomp-game ships inside
-      # overlay_toolchain/ so the runtime can compile overlays from the
-      # player's disc. Host/UI-only bumps keep the same psxrecomp gitlink →
-      # cache hit skips rebuilding them (see reuse_cached_emitters).
+      # Emitters ship inside overlay_toolchain/ so the runtime can compile
+      # overlays from the player's disc (and a BIOS backend for a known image
+      # this build does not link). Host/UI-only bumps keep the same psxrecomp
+      # gitlink → cache hit skips rebuilding them (see reuse_cached_emitters).
       - name: Emitter cache key
         id: emitter_cache
         shell: bash
@@ -402,13 +403,6 @@ jobs:
             echo "::error::expected psxrecomp-game + psxrecomp-bios under build-recompiler (found ${count})"
             exit 1
           fi
-
-      # BIOS C lives in the framework submodule's generated/, which a title
-      # cannot commit. OpenBIOS is MIT and its image is bundled, so CI emits
-      # that one backend here. No retail backend is ever produced in CI.
-      - name: Generate OpenBIOS backend C
-        shell: bash
-        run: bash psxrecomp/tools/ci/generate_openbios.sh --framework psxrecomp --recompiler-build build-recompiler
 
       # The generated game C is tens of MB per title; ccache turns a host/UI
       # bump into a link-only rebuild on every platform.
@@ -479,9 +473,10 @@ jobs:
           fi
           # Full game build: the committed generated/ C is REQUIRED, so a
           # checkout without it fails configure instead of silently producing
-          # a setup host. OpenBIOS was emitted above; runtime.cmake links every
-          # backend whose C is present, and only OpenBIOS can be.
-          # PSX_SETUP_WIZARD stays on: it is the first-run disc picker.
+          # a setup host. runtime.cmake links every BIOS backend whose C is
+          # committed in the submodule (OpenBIOS and SCPH-1001), and
+          # BIOS_STALE_FATAL refuses a stamp that predates the emitter.
+          # PSX_SETUP_WIZARD stays on: it is the first-run BIOS/disc picker.
           # Netplay titles: set PSX_NETPLAY ON in CMakeLists *before*
           # include(runtime.cmake) (ENABLE_NETPLAY_IF_PRESENT alone is too
           # late) and add -DPSX_NETPLAY=ON below as belt-and-suspenders.
@@ -494,6 +489,7 @@ jobs:
           cmake -S . -B build-ci -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
             -DPSXRECOMP_REQUIRE_GAME_C=ON \
+            -DPSXRECOMP_BIOS_STALE_FATAL=ON \
             -DPSXRECOMP_FORCE_SETUP_HOST=OFF \
             -DPSXRECOMP_ALLOW_NO_BIOS=OFF \
             -DPSX_SETUP_WIZARD=ON \
@@ -505,11 +501,11 @@ jobs:
             exit 1
           fi
           if ! grep -qE 'BIOS backends linked: .*OpenBIOS' build-ci-configure.log; then
-            echo "::error::CMake did not link the OpenBIOS backend (generate_openbios.sh output missing?)"
+            echo "::error::CMake did not link the OpenBIOS backend (psxrecomp/generated missing or stale?)"
             exit 1
           fi
-          if grep -qE 'BIOS backends linked: .*SCPH' build-ci-configure.log; then
-            echo "::error::a retail BIOS backend was linked — that C must never be in a CI checkout"
+          if ! grep -qE 'BIOS backends linked: .*SCPH1001' build-ci-configure.log; then
+            echo "::error::CMake did not link the SCPH-1001 backend (psxrecomp/generated/SCPH1001_* missing or stale?)"
             exit 1
           fi
           if ! grep -q 'Vulkan backend: headers' build-ci-configure.log; then
