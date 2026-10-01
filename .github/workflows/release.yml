@@ -222,6 +222,14 @@ jobs:
         shell: bash
         run: bash psxrecomp/tools/ci/check_generated.sh --root .
 
+      # The framework's committed BIOS backends must carry stamps that match
+      # the emitter fingerprint computed HERE. runtime.cmake re-checks this at
+      # configure (BIOS_STALE_FATAL); this step runs first and, on mismatch,
+      # prints every input's digest so the disagreement names a file.
+      - name: Verify BIOS backend stamps
+        shell: bash
+        run: bash psxrecomp/tools/ci/check_bios_stamps.sh --framework psxrecomp
+
       - name: Setup MSYS2 (Windows)
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
