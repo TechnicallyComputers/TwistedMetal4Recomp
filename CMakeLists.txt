@@ -31,13 +31,15 @@ psxrecomp_add_game_runtime(psx-runtime
     CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
 )
 
-# psxrecomp's runtime/src/main.cpp includes recomp_net/host_relay.h
-# unconditionally (a plain-C types header), but with PSX_NETPLAY off nothing
-# adds recomp-net's include dir. Expose it when the submodule is checked out.
+# >>> psxrecomp:recomp-net-headers (managed by tools/update_cmake.{sh,ps1})
+# runtime/src/main.cpp includes recomp_net/host_relay.h unconditionally (a
+# plain-C types header). With PSX_NETPLAY off nothing adds recomp-net's include
+# dir, so expose it whenever the submodule is checked out.
 if(EXISTS "${PSXRECOMP_ROOT}/lib/recomp-net/include/recomp_net/host_relay.h")
     target_include_directories(psx-runtime PRIVATE
         "${PSXRECOMP_ROOT}/lib/recomp-net/include")
 endif()
+# <<< psxrecomp:recomp-net-headers
 
 # Stage runtime configs next to the exe for direct build/ launches. Only copy
 # files that exist — never fail POST_BUILD when game_options.toml is absent.
