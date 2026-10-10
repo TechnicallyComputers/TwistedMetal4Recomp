@@ -12,7 +12,10 @@ extern void cosim_instr(uint32_t pc);
 #endif
 extern int  psx_game_text_native_ok(uint32_t addr);  /* stale-static guard (dispatch shard) */
 extern int  psx_datashard_enter(CPUState* cpu, uint32_t key);  /* data-shard replay/capture (data_shards.c) */
-extern void psx_mod_function_entry(CPUState* cpu, uint32_t address);  /* trusted opt-in game-mod hook */
+extern void psx_mod_instruction(CPUState*, uint32_t, uint32_t);
+extern int psx_mod_function_entry(CPUState* cpu, uint32_t address);  /* trusted opt-in game-mod hook */
+extern int psx_ws_masked_reject(uint32_t flags, uint32_t mask); /* guarded packed-coordinate reject */
+extern int psx_ws_nclip_branch(uint32_t pc, uint32_t instr, int32_t mac0, int vanilla);
 extern void psx_datashard_ret(CPUState* cpu);                  /* data-shard capture finalize */
 extern int  psx_vsync_query_hle_enter(CPUState* cpu, uint32_t func, uint32_t counter_addr, uint32_t gpustat_ptr_addr, uint32_t timer1_ptr_addr, uint32_t timer1_cache_addr);  /* load_accel.c */
 extern void psx_ws_sprite_tag(CPUState* cpu);  /* widescreen prim tag (gpu.c) */
@@ -31,6 +34,7 @@ extern int32_t psx_ws_depth_bound(int32_t imm);            /* ws aspect-scaled f
 extern int32_t psx_ws_plane_nx(int32_t nx);                /* ws side-plane normal-X scale (gpu.c) */
 extern uint32_t psx_ws_xclip_bound(uint32_t vanilla);      /* ws per-prim X reject bound load (gpu.c) */
 extern uint32_t psx_ws_cull_keep_result(uint32_t vanilla, uint32_t forced); /* ws guarded keep compare (gpu.c) */
+extern int32_t psx_ws_cull_scale(int32_t bound, int32_t half_extent); /* ws frustum-edge bound scale (gpu.c) */
 extern uint32_t psx_ws_aspect_cone_result(uint32_t site, uint32_t vanilla, uint32_t object, int32_t x, int32_t z, int32_t y); /* aspect-aware participation cone */
 extern uint32_t psx_ws_angle_widen(uint32_t vanilla); /* aspect-scaled 12-bit terrain-frustum half-angle */
 extern int  psx_ws_backdrop_x(int x);  /* widescreen backdrop screenX squash (gpu.c) */

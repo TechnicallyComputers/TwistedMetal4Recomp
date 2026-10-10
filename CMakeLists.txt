@@ -10,16 +10,17 @@ set(PSXRECOMP_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/psxrecomp" CACHE PATH
 # alone does not open first-run / Generate & rebuild).
 # recomp-ui submodule present (PSX_RECOMP_UI defaults ON).
 # Full netplay UI — enable after adding recomp-ui + testing:
-# if(EXISTS "${PSXRECOMP_ROOT}/lib/recomp-net/CMakeLists.txt")
-#     set(PSX_NETPLAY ON CACHE BOOL "…" FORCE)
-# endif()
+if(EXISTS "${PSXRECOMP_ROOT}/lib/recomp-net/CMakeLists.txt")
+    set(PSX_NETPLAY ON CACHE BOOL
+        "Link recomp-net delay-sync (opt-in; needs recomp-net)" FORCE)
+endif()
 set(PSX_SETUP_WIZARD ON CACHE BOOL
     "Advertise first-run setup wizard + Generate & rebuild in recomp-ui" FORCE)
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
 
 psxrecomp_add_game_runtime(psx-runtime
-    # ENABLE_NETPLAY_IF_PRESENT
-    # NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
+    ENABLE_NETPLAY_IF_PRESENT
+    NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
     ENABLE_SETUP_WIZARD
     WINDOW_TITLE "TwistedMetal4 Recompiled"
     DEFAULT_GAME_CONFIG_PATH "game.toml"

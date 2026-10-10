@@ -79,3 +79,6 @@ starvation_dump.jsonl
 
 # --- PSXRecomp (project studio) ---
 /analysis/
+
+# --- PSXRecomp setup-host (project studio) ---
+/generated/
