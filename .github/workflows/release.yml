@@ -8,8 +8,8 @@
 #
 # WHAT THIS SHIPS. A compiled game. The title COMMITS its generated/ game C
 # (psxrecomp_cli.py generate, run once by the developer from a legal disc);
-# the framework COMMITS its two BIOS backends (OpenBIOS and SCPH-1001) in
-# psxrecomp/generated/. CI links both into the runtime and packages the
+# the framework COMMITS its OpenBIOS backend in psxrecomp/generated/
+# (SCPH-1001 is local-only since #575). CI links it into the runtime and packages the
 # executable with its runtime data. Players download, point it at their disc
 # (and, if they want the retail BIOS, their own dump — the runtime needs the
 # image's data and checks its identity), and play. Nothing is generated or
@@ -482,7 +482,7 @@ jobs:
           # Full game build: the committed generated/ C is REQUIRED, so a
           # checkout without it fails configure instead of silently producing
           # a setup host. runtime.cmake links every BIOS backend whose C is
-          # committed in the submodule (OpenBIOS and SCPH-1001), and
+          # committed in the submodule (OpenBIOS; SCPH-1001 is local-only), and
           # BIOS_STALE_FATAL refuses a stamp that predates the emitter.
           # PSX_SETUP_WIZARD stays on: it is the first-run BIOS/disc picker.
           # Netplay titles: set PSX_NETPLAY ON in CMakeLists *before*
@@ -510,10 +510,6 @@ jobs:
           fi
           if ! grep -qE 'BIOS backends linked: .*OpenBIOS' build-ci-configure.log; then
             echo "::error::CMake did not link the OpenBIOS backend (psxrecomp/generated missing or stale?)"
-            exit 1
-          fi
-          if ! grep -qE 'BIOS backends linked: .*SCPH1001' build-ci-configure.log; then
-            echo "::error::CMake did not link the SCPH-1001 backend (psxrecomp/generated/SCPH1001_* missing or stale?)"
             exit 1
           fi
           if ! grep -q 'Vulkan backend: headers' build-ci-configure.log; then
